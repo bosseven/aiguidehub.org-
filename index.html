@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Information Quick Navigation Station</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9e0.png" crossorigin="anonymous">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <style>
+        /* 备用内联样式，以防CSS文件加载失败 */
+        :root {
+            --primary-color: #4a6cf7;
+            --secondary-color: #121933;
+            --accent-color: #f5743d;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --hover-color: #ebf0ff;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            --gradient-primary: linear-gradient(135deg, #4a6cf7, #6a8eff);
+            --gradient-accent: linear-gradient(135deg, #f5743d, #ff9066);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 3.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+        }
+        
+        .category-nav {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .category-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+        
+        .category-nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .category-nav a:hover {
+            background-color: var(--hover-color);
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+    </style>
+    <script>
+        // 防止外部 favicon 加载错误
+        window.addEventListener('error', function(e) {
+            // 检查是否是图片加载错误且包含 favicon.ico
+            if (e.target.tagName === 'IMG' && e.target.src.includes('favicon.ico')) {
+                // 阻止错误显示在控制台
+                e.preventDefault();
+                e.stopPropagation();
+                // 替换为默认图标或隐藏
+                const fallbackText = e.target.alt.substring(0, 2).toUpperCase();
+                const fallbackElement = document.createElement('div');
+                fallbackElement.className = 'fallback-logo';
+                fallbackElement.textContent = fallbackText;
+                e.target.parentNode.replaceChild(fallbackElement, e.target);
+            }
+        }, true);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>AI Information Quick Navigation Station</h1>
+                <p>AIGuideHub.org — Intelligent navigation center of the global AI ecosystem</p>
+                <div class="header-actions">
+                    <a href="#section1" class="action-button"><i class="fas fa-rocket"></i> Start Exploring</a>
+                </div>
+            </div>
+        </header>
+        
+        <nav class="category-nav">
+            <ul>
+                <li><a href="#section1"><i class="fas fa-search"></i> Demand Collection & Keyword Research</a></li>
+                <li><a href="#section2"><i class="fas fa-tools"></i> Website Essentials</a></li>
+                <li><a href="#section3"><i class="fas fa-chart-line"></i> Competitor Research</a></li>
+                <li><a href="#section4"><i class="fas fa-code"></i> Website Templates</a></li>
+                <li><a href="#section5"><i class="fas fa-compass"></i> Navigation Site Templates</a></li>
+                <li><a href="#section6"><i class="fas fa-users"></i> Information Communities</a></li>
+            </ul>
+        </nav>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜索AI工具和资源..." aria-label="搜索">
+            <button id="searchButton"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="theme-toggle">
+            <button id="themeToggle" aria-label="切换深色/浅色主题">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        
+        <main>
+            <!-- Section 1: Demand Collection & Keyword Research -->
+            <section id="section1" class="category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2>1. Demand Collection & Keyword Research</h2>
+                </div>
+                <div class="links-container">
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://www.searchsuggest.tips/favicon.ico" alt="Google Dropdown Words" class="link-logo" loading="lazy">
+                            <h3>Google Dropdown Words</h3>
+                        </div>
+                        <p>View Google search suggestion words to discover popular searches</p>
+                        <div class="link-card-footer">
+                            <a href="https://www.searchsuggest.tips/?keyword=" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://www.toolify.ai/favicon.ico" alt="Toolify Rankings" class="link-logo" loading="lazy">
+                            <h3>Toolify Rankings</h3>
+                        </div>
+                        <p>View popular AI tools and their revenue status</p>
+                        <div class="link-card-footer">
+                            <a href="https://www.toolify.ai/Best-AI-Tools-revenue" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://theresanaiforthat.com/favicon.ico" alt="AI Navigation Site Request List" class="link-logo" loading="lazy">
+                            <h3>AI Navigation Site Request List</h3>
+                        </div>
+                        <p>Understand user needs for AI tools</p>
+                        <div class="link-card-footer">
+                            <a href="https://theresanaiforthat.com/requests" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://ahrefs.com/favicon.ico" alt="Keyword Difficulty" class="link-logo" loading="lazy">
+                            <h3>Keyword Difficulty</h3>
+                        </div>
+                        <p>Evaluate keyword competition difficulty</p>
+                        <div class="link-card-footer">
+                            <a href="https://ahrefs.com/keyword-difficulty" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 2: Website Essentials -->
+            <section id="section2" class="category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h2>2. Website Essentials</h2>
+                </div>
+                <div class="subcategory">
+                    <h3><i class="fas fa-search"></i> Domain Search</h3>
+                    <div class="links-container">
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://leandomainsearch.com/favicon.ico" alt="Lean Domain Search" class="link-logo" loading="lazy">
+                                <h3>Lean Domain Search</h3>
+                            </div>
+                            <p>Find available domains</p>
+                            <div class="link-card-footer">
+                                <a href="https://leandomainsearch.com" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://query.domains/favicon.ico" alt="Query Domains" class="link-logo" loading="lazy">
+                                <h3>Query Domains</h3>
+                            </div>
+                            <p>Domain query tool</p>
+                            <div class="link-card-footer">
+                                <a href="https://query.domains/" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://instantdomainsearch.com/favicon.ico" alt="Instant Domain Search" class="link-logo" loading="lazy">
+                                <h3>Instant Domain Search</h3>
+                            </div>
+                            <p>Real-time domain search</p>
+                            <div class="link-card-footer">
+                                <a href="https://instantdomainsearch.com/?q=" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subcategory">
+                    <h3><i class="fas fa-globe"></i> Domain Registration</h3>
+                    <div class="links-container">
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://spaceship.com/favicon.ico" alt="Spaceship" class="link-logo" loading="lazy">
+                                <h3>Spaceship</h3>
+                            </div>
+                            <p>Domain registration service</p>
+                            <div class="link-card-footer">
+                                <a href="https://spaceship.com" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://porkbun.com/favicon.ico" alt="Porkbun" class="link-logo" loading="lazy">
+                                <h3>Porkbun</h3>
+                            </div>
+                            <p>Domain registration service</p>
+                            <div class="link-card-footer">
+                                <a href="https://porkbun.com" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://namecheap.com/favicon.ico" alt="Namecheap" class="link-logo" loading="lazy">
+                                <h3>Namecheap</h3>
+                            </div>
+                            <p>Domain registration service</p>
+                            <div class="link-card-footer">
+                                <a href="https://namecheap.com" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subcategory">
+                    <h3><i class="fas fa-server"></i> Code & Website Hosting</h3>
+                    <div class="links-container">
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://github.com/favicon.ico" alt="GitHub" class="link-logo" loading="lazy">
+                                <h3>GitHub</h3>
+                            </div>
+                            <p>Code hosting platform</p>
+                            <div class="link-card-footer">
+                                <a href="https://github.com" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://cloudflare.com/favicon.ico" alt="Cloudflare" class="link-logo" loading="lazy">
+                                <h3>Cloudflare</h3>
+                            </div>
+                            <p>CDN and website hosting</p>
+                            <div class="link-card-footer">
+                                <a href="https://cloudflare.com" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://vercel.com/favicon.ico" alt="Vercel" class="link-logo" loading="lazy">
+                                <h3>Vercel</h3>
+                            </div>
+                            <p>Frontend deployment platform</p>
+                            <div class="link-card-footer">
+                                <a href="https://vercel.com" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subcategory">
+                    <h3><i class="fas fa-chart-bar"></i> Data Backend</h3>
+                    <div class="links-container">
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://www.google.com/favicon.ico" alt="Google Search Console" class="link-logo" loading="lazy">
+                                <h3>Google Search Console</h3>
+                            </div>
+                            <p>Monitor your website's performance in Google search</p>
+                            <div class="link-card-footer">
+                                <a href="https://search.google.com/search-console" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://www.google.com/favicon.ico" alt="Google Analytics" class="link-logo" loading="lazy">
+                                <h3>Google Analytics</h3>
+                            </div>
+                            <p>Website traffic analysis tool</p>
+                            <div class="link-card-footer">
+                                <a href="https://analytics.google.com/analytics/web/#" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-card-header">
+                                <img src="https://www.bing.com/favicon.ico" alt="Bing Webmaster" class="link-logo" loading="lazy">
+                                <h3>Bing Webmaster</h3>
+                            </div>
+                            <p>Submit URLs to Bing search engine</p>
+                            <div class="link-card-footer">
+                                <a href="https://www.bing.com/webmasters/submiturl" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 3: Competitor Research -->
+            <section id="section3" class="category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2>3. Competitor Research</h2>
+                </div>
+                <div class="links-container">
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://aitdk.com/favicon.ico" alt="AITDK" class="link-logo" loading="lazy">
+                            <h3>AITDK</h3>
+                        </div>
+                        <p>View traffic and webpage keywords</p>
+                        <div class="link-card-footer">
+                            <a href="https://aitdk.com" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://ahrefs.com/favicon.ico" alt="Ahrefs" class="link-logo" loading="lazy">
+                            <h3>Ahrefs</h3>
+                        </div>
+                        <p>Check backlinks</p>
+                        <div class="link-card-footer">
+                            <a href="https://ahrefs.com/free-seo-tools" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://semrush.com/favicon.ico" alt="SEMrush" class="link-logo" loading="lazy">
+                            <h3>SEMrush</h3>
+                        </div>
+                        <p>View website keywords</p>
+                        <div class="link-card-footer">
+                            <a href="https://semrush.com" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 4: Website Templates -->
+            <section id="section4" class="category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h2>4. Website Templates</h2>
+                </div>
+                <div class="links-container">
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Dynamic blog - Rin" class="link-logo" loading="lazy">
+                            <h3>Dynamic blog - Rin</h3>
+                        </div>
+                        <p>Based on Cloudflare Pages + Workers + D1 + R2</p>
+                        <div class="tag">Cloudflare</div>
+                        <div class="tag">Blog</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/openRin/Rin" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Next.js 15 Boilerplate" class="link-logo" loading="lazy">
+                            <h3>Next.js 15 Boilerplate</h3>
+                        </div>
+                        <p>Next.js 15 with App Router and Page Router support</p>
+                        <div class="tag">Next.js</div>
+                        <div class="tag">React</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ixartz/Next-js-Boilerplate" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="SaaS Boilerplate" class="link-logo" loading="lazy">
+                            <h3>SaaS Boilerplate</h3>
+                        </div>
+                        <p>Next.js + Tailwind CSS + Shadcn UI + TypeScript</p>
+                        <div class="tag">SaaS</div>
+                        <div class="tag">Tailwind</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ixartz/SaaS-Boilerplate" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Next.js Landing Page" class="link-logo" loading="lazy">
+                            <h3>Next.js Landing Page</h3>
+                        </div>
+                        <p>Free Next.js landing page template</p>
+                        <div class="tag">Landing Page</div>
+                        <div class="tag">Next.js</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ixartz/Next-JS-Landing-Page-Starter-Template" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Astro Boilerplate" class="link-logo" loading="lazy">
+                            <h3>Astro Boilerplate</h3>
+                        </div>
+                        <p>Responsive blog and portfolio template</p>
+                        <div class="tag">Astro</div>
+                        <div class="tag">Blog</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ixartz/Astro-boilerplate" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Landing Page Boilerplate" class="link-logo" loading="lazy">
+                            <h3>Landing Page Boilerplate</h3>
+                        </div>
+                        <p>Landing page template for various projects and marketing campaigns</p>
+                        <div class="tag">Landing Page</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/weijunext/landing-page-boilerplate" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Viggle AI Web UI" class="link-logo" loading="lazy">
+                            <h3>Viggle AI Web UI</h3>
+                        </div>
+                        <p>Viggle AI Web client open source project</p>
+                        <div class="tag">AI</div>
+                        <div class="tag">Web UI</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ai-aigc-studio/Viggle-Al-WebUl" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Weekly Blog" class="link-logo" loading="lazy">
+                            <h3>Weekly Blog</h3>
+                        </div>
+                        <p>Blog template</p>
+                        <div class="tag">Blog</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/weijunext/new-blog" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="GAPIS Money" class="link-logo" loading="lazy">
+                            <h3>GAPIS Money</h3>
+                        </div>
+                        <p>API monetization platform</p>
+                        <div class="tag">API</div>
+                        <div class="tag">Monetization</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/weijunext/gapis.money" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Hunt Screens" class="link-logo" loading="lazy">
+                            <h3>Hunt Screens</h3>
+                        </div>
+                        <p>Take screenshots of new projects on ProductHunt, YC, and Indiehackers</p>
+                        <div class="tag">Screenshots</div>
+                        <div class="tag">ProductHunt</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/daimajia/huntscreens" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Smart Excel AI" class="link-logo" loading="lazy">
+                            <h3>Smart Excel AI</h3>
+                        </div>
+                        <p>Generate Excel formulas using ChatGPT</p>
+                        <div class="tag">Excel</div>
+                        <div class="tag">ChatGPT</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/weijunext/smart-excel-ai" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="NextJS VPS Example" class="link-logo" loading="lazy">
+                            <h3>NextJS VPS Example</h3>
+                        </div>
+                        <p>NextJS VPS example</p>
+                        <div class="tag">Next.js</div>
+                        <div class="tag">VPS</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ashleyrudland/nextjs_vps" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Change Hairstyle AI" class="link-logo" loading="lazy">
+                            <h3>Change Hairstyle AI</h3>
+                        </div>
+                        <p>Quickly get a new hairstyle</p>
+                        <div class="tag">AI</div>
+                        <div class="tag">Image</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/Pwntus/change-hairstyle-ai" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Green Screen Creator" class="link-logo" loading="lazy">
+                            <h3>Green Screen Creator</h3>
+                        </div>
+                        <p>Track an object in a video and add a green screen background</p>
+                        <div class="tag">Video</div>
+                        <div class="tag">AI</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/replicate/green-screen-creator" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Open SaaS" class="link-logo" loading="lazy">
+                            <h3>Open SaaS</h3>
+                        </div>
+                        <p>Free, open-source React and Node.js SaaS application starter</p>
+                        <div class="tag">SaaS</div>
+                        <div class="tag">React</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/wasp-lang/open-saas/" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Svelte 5 SaaS Boilerplate" class="link-logo" loading="lazy">
+                            <h3>Svelte 5 SaaS Boilerplate</h3>
+                        </div>
+                        <p>Includes database, authentication, email, analytics and more</p>
+                        <div class="tag">Svelte</div>
+                        <div class="tag">SaaS</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ocluf/justship" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 5: Navigation Site Templates -->
+            <section id="section5" class="category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h2>5. Navigation Site Templates</h2>
+                </div>
+                <div class="links-container">
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="FRE123 Navigation" class="link-logo" loading="lazy">
+                            <h3>FRE123 Navigation</h3>
+                        </div>
+                        <p>Free resource sharing platform navigation, build your navigation site with one click</p>
+                        <div class="tag">Navigation</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/fre123-com/fre123-nav/" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="OSS Gallery" class="link-logo" loading="lazy">
+                            <h3>OSS Gallery</h3>
+                        </div>
+                        <p>A crowdsourced list of the best open-source projects on the internet</p>
+                        <div class="tag">Gallery</div>
+                        <div class="tag">Open Source</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/dubinc/oss-gallery?ref=ossgallery" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="WebStack.cc" class="link-logo" loading="lazy">
+                            <h3>WebStack.cc</h3>
+                        </div>
+                        <p>Static responsive website navigation site</p>
+                        <div class="tag">Navigation</div>
+                        <div class="tag">Responsive</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/WebStackPage/WebStackPage.github.io" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="Tap4 AI WebUI" class="link-logo" loading="lazy">
+                            <h3>Tap4 AI WebUI</h3>
+                        </div>
+                        <p>One-click to deploy your own AI tools directory</p>
+                        <div class="tag">AI</div>
+                        <div class="tag">Tools Directory</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/6677-ai/tap4-ai-webui" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="GPTs Works" class="link-logo" loading="lazy">
+                            <h3>GPTs Works</h3>
+                        </div>
+                        <p>A third-party GPTs store</p>
+                        <div class="tag">GPTs</div>
+                        <div class="tag">AI</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/all-in-aigc/gpts-works" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="UI Libs" class="link-logo" loading="lazy">
+                            <h3>UI Libs</h3>
+                        </div>
+                        <p>A UI Lib Picker for Vue3/Nuxt3</p>
+                        <div class="tag">Vue</div>
+                        <div class="tag">UI</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/ddahan/ui-libs" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://github.com/favicon.ico" alt="DokeyAI Data" class="link-logo" loading="lazy">
+                            <h3>DokeyAI Data</h3>
+                        </div>
+                        <p>Public AI tools data for website dokeyai.com</p>
+                        <div class="tag">AI</div>
+                        <div class="tag">Data</div>
+                        <div class="link-card-footer">
+                            <a href="https://github.com/DokeyAl/dokeyai-data" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://vercel.com/favicon.ico" alt="Vercel Templates" class="link-logo" loading="lazy">
+                            <h3>Vercel Templates</h3>
+                        </div>
+                        <p>Various website templates provided by Vercel</p>
+                        <div class="tag">Templates</div>
+                        <div class="tag">Vercel</div>
+                        <div class="link-card-footer">
+                            <a href="https://vercel.com/templates" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 6: Information Communities -->
+            <section id="section6" class="category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2>6. Information Communities</h2>
+                </div>
+                <div class="links-container">
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png" alt="Reddit" class="link-logo" loading="lazy">
+                            <h3>Reddit</h3>
+                        </div>
+                        <p>A network of communities where people can dive into their interests</p>
+                        <div class="tag">Community</div>
+                        <div class="tag">Discussion</div>
+                        <div class="link-card-footer">
+                            <a href="https://www.reddit.com/r/SideProject/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://developers.google.com/search/images/sc-icon.png" alt="Google Search Central" class="link-logo" loading="lazy">
+                            <h3>Google Search Central</h3>
+                        </div>
+                        <p>Official Google SEO guide and documentation</p>
+                        <div class="tag">SEO</div>
+                        <div class="tag">Google</div>
+                        <div class="link-card-footer">
+                            <a href="https://developers.google.com/search" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://static.ahrefs.com/favicon-32x32.png" alt="Ahrefs" class="link-logo" loading="lazy">
+                            <h3>Ahrefs Blog</h3>
+                        </div>
+                        <p>SEO blog with marketing tips, tutorials, case studies</p>
+                        <div class="tag">SEO</div>
+                        <div class="tag">Marketing</div>
+                        <div class="link-card-footer">
+                            <a href="https://ahrefs.com/blog/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://aivideos.com/favicon.ico" alt="AI Video SaaS Tools" class="link-logo" loading="lazy">
+                            <h3>AI Video SaaS Tools</h3>
+                        </div>
+                        <p>A curated list of the top AI video editing and creation tools</p>
+                        <div class="tag">AI</div>
+                        <div class="tag">Video</div>
+                        <div class="link-card-footer">
+                            <a href="https://aivideos.com/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://solopreneur-report.com/favicon.ico" alt="Solopreneur Report 2.0" class="link-logo" loading="lazy">
+                            <h3>Solopreneur Report 2.0</h3>
+                        </div>
+                        <p>Launch your SaaS, AI project, newsletter, etc. faster</p>
+                        <div class="tag">Solopreneur</div>
+                        <div class="tag">SaaS</div>
+                        <div class="link-card-footer">
+                            <a href="https://solopreneur-report.com/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://500mrr.com/favicon.ico" alt="500MRR" class="link-logo" loading="lazy">
+                            <h3>500MRR</h3>
+                        </div>
+                        <p>Case studies and tactics to inspire your SaaS business</p>
+                        <div class="tag">SaaS</div>
+                        <div class="tag">MRR</div>
+                        <div class="link-card-footer">
+                            <a href="https://500mrr.com/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                    <div class="link-card">
+                        <div class="link-card-header">
+                            <img src="https://news.ycombinator.com/favicon.ico" alt="HackerNews" class="link-logo" loading="lazy">
+                            <h3>HackerNews</h3>
+                        </div>
+                        <p>A social news website focusing on computer science and entrepreneurship</p>
+                        <div class="tag">Tech</div>
+                        <div class="tag">News</div>
+                        <div class="link-card-footer">
+                            <a href="https://news.ycombinator.com/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-title">
+                    <h2>AI Information Quick Navigation Station</h2>
+                    <p>AIGuideHub.org — 为技术爱好者和独立开发者精心收集的AI和开发资源导航中心</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>联系我们</h3>
+                        <ul>
+                            <li><a href="mailto:even141319@gmail.com"><i class="fas fa-envelope"></i> 发送邮件</a></li>
+                            <li><a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>更多</h3>
+                        <ul>
+                            <li><a href="#" id="aboutUsLink"><i class="fas fa-info-circle"></i> 关于我们</a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-code-branch"></i> 参与贡献</a></li>
+                            <li><a href="#" target="_blank"><i class="fas fa-comment"></i> 意见反馈</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:even141319@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AIGuideHub.org - AI Information Quick Navigation Station. All rights reserved.</p>
+            </div>
+        </footer>
+        
+        <!-- About Us Modal -->
+        <div id="aboutUsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>About Us</h2>
+                <h3>AIGuideHub.org — Intelligent navigation center of the global AI ecosystem</h3>
+                <p>The AI resource aggregation engine tailored for developers, enterprises and researchers integrates the following core functions:</p>
+                
+                <h4>1. Accurate resource map</h4>
+                <ul>
+                    <li>Covering 2000+ AI tools/frameworks/paper libraries, classified by "technical field", "development stage" and "industry scenario" in three dimensions</li>
+                    <li>Dynamically update the ChatGPT plug-in ecosystem, Stable Diffusion model library, Llama open source projects and other cutting-edge resources</li>
+                </ul>
+                
+                <h4>2. Intelligent decision-making system</h4>
+                <ul>
+                    <li>Multimodal search: support natural language queries (such as "NLP tools suitable for small samples")</li>
+                    <li>Comparison matrix: one-click generation of TensorFlow vs PyTorch and other technology stack parameter comparison tables</li>
+                </ul>
+                
+                <h4>3. Ecological connector</h4>
+                <ul>
+                    <li>Direct access for developers: GitHub code warehouse/Colab case/API document internal integration</li>
+                    <li>Enterprise solution library: Provide full-link resource navigation from AI prototype development to deployment</li>
+                </ul>
+                
+                <h4>4. Global technology radar</h4>
+                <ul>
+                    <li>Real-time tracking of Silicon Valley AI labs, global Dynamics of innovation hubs such as AI Technology Park</li>
+                </ul>
+                
+                <h4>Suitable scenarios:</h4>
+                <ul>
+                    <li>Developers: locate the appropriate AI development tool chain within 5 minutes</li>
+                    <li>Enterprise CTO: quickly build an AI technology selection matrix</li>
+                    <li>Researcher: capture the latest papers and data sets in the field</li>
+                </ul>
+                
+                <h4>Brand promise:</h4>
+                <p>"Increase the efficiency of AI resource acquisition by 10 times and focus on innovation itself"</p>
+            </div>
+        </div>
+        
+        <!-- Scroll to Top Button -->
+        <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+    
+    <script src="js/script.js"></script>
+    <script>
+        // Modal functionality
+        const aboutUsModal = document.getElementById("aboutUsModal");
+        const aboutUsLink = document.getElementById("aboutUsLink");
+        const closeButton = document.querySelector(".close-button");
+        
+        aboutUsLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            aboutUsModal.style.display = "block";
+        });
+        
+        closeButton.addEventListener("click", function() {
+            aboutUsModal.style.display = "none";
+        });
+        
+        window.addEventListener("click", function(event) {
+            if (event.target == aboutUsModal) {
+                aboutUsModal.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html> 
